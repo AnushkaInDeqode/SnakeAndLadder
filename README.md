@@ -19,3 +19,9 @@
 In this project I have used the following dependencies :-
 
 - JUnit
+
+---
+
+## Execution
+
+Just clone the project in your local and execute the main file.
