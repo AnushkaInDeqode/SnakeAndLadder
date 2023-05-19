@@ -1,6 +1,6 @@
 # Snake and Ladder Game
 
-`It is a simple application for two players. Both the players just have to press “Enter” and the dice will be rolled one by one for both the players. As one of the players reach 100, that player becomes the winner`
+`It is a simple application for two players. Both the players just have to press “Enter” and the dice will be rolled one by one for both the players. As one of the players reach 100, that particular player becomes the winner.`
 
 ---
 ## Requirements
