@@ -18,7 +18,7 @@ public class SnakeLadderGameTest {
     @Test
     public void testPlayerMovementWithoutSnakesOrLadders() {
         Player player = snakeLadderGame.getPlayers().get(0);
-        player.setPosition(5); // Set initial position
+        player.setPosition(5);
 
         snakeLadderGame.handleSnakeOrLadder(2);
         Assert.assertEquals(7, player.getPosition());
@@ -52,6 +52,9 @@ public class SnakeLadderGameTest {
     public void testPlayerMovementWithLadders() {
         Player player = snakeLadderGame.getPlayers().get(0);
         player.setPosition(4);
+
+        snakeLadderGame.handleSnakeOrLadder(2);
+        Assert.assertEquals(22, player.getPosition());
 
         snakeLadderGame.handleSnakeOrLadder(3);
         Assert.assertEquals(29, player.getPosition());
