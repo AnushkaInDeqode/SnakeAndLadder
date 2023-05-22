@@ -1,80 +1,49 @@
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 import com.snakeLadder.businessLogic.SnakeLadderGame;
 import com.snakeLadder.model.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
+
 public class SnakeLadderGameTest {
 
-    private SnakeLadderGame snakeLadderGame;
-
-    @Before
-    public void setUp() {
-        snakeLadderGame = new SnakeLadderGame();
-        snakeLadderGame.initializeGame();
+    @Test
+    public void testHandleSnakeOrLadder_Snake() {
+        List<Snake> snakes = List.of(new Snake(16, 6), new Snake(47, 26));
+        SnakeLadderGame game = new SnakeLadderGame();
+        game.initializeSnakes(snakes);
+        int newPosition = game.handleSnakeOrLadder(16);
+        assertEquals(6, newPosition);
     }
 
     @Test
-    public void testPlayerMovementWithoutSnakesOrLadders() {
-        Player player = snakeLadderGame.getPlayers().get(0);
-        player.setPosition(5);
-
-        snakeLadderGame.handleSnakeOrLadder(2);
-        Assert.assertEquals(7, player.getPosition());
-
-        snakeLadderGame.handleSnakeOrLadder(3);
-        Assert.assertEquals(10, player.getPosition());
-
-        snakeLadderGame.handleSnakeOrLadder(4);
-        Assert.assertEquals(14, player.getPosition());
-
-        snakeLadderGame.handleSnakeOrLadder(2);
-        Assert.assertEquals(16, player.getPosition());
+    public void testHandleSnakeOrLadder_Ladder() {
+        List<Ladder> ladders = List.of(new Ladder(3, 22), new Ladder(5, 8));
+        SnakeLadderGame game = new SnakeLadderGame();
+        game.initializeLadders(ladders);
+        int newPosition = game.handleSnakeOrLadder(3);
+        assertEquals(22, newPosition);
     }
 
     @Test
-    public void testPlayerMovementWithSnakes() {
-        Player player = snakeLadderGame.getPlayers().get(0);
-        player.setPosition(10);
-
-        snakeLadderGame.handleSnakeOrLadder(3);
-        Assert.assertEquals(13, player.getPosition());
-
-        snakeLadderGame.handleSnakeOrLadder(5);
-        Assert.assertEquals(6, player.getPosition());
-
-        snakeLadderGame.handleSnakeOrLadder(4);
-        Assert.assertEquals(6, player.getPosition());
+    public void testHandleSnakeOrLadder_NoSnakeOrLadder() {
+        SnakeLadderGame game = new SnakeLadderGame();
+        int newPosition = game.handleSnakeOrLadder(10);
+        assertEquals(10, newPosition);
     }
 
     @Test
-    public void testPlayerMovementWithLadders() {
-        Player player = snakeLadderGame.getPlayers().get(0);
-        player.setPosition(4);
-
-        snakeLadderGame.handleSnakeOrLadder(2);
-        Assert.assertEquals(22, player.getPosition());
-
-        snakeLadderGame.handleSnakeOrLadder(3);
-        Assert.assertEquals(29, player.getPosition());
-
-        snakeLadderGame.handleSnakeOrLadder(5);
-        Assert.assertEquals(34, player.getPosition());
-
-        snakeLadderGame.handleSnakeOrLadder(1);
-        Assert.assertEquals(50, player.getPosition());
+    public void testPlayerInitialization() {
+        String input = "3";
+        InputStream in = new ByteArrayInputStream(input.getBytes());
+        System.setIn(in);
+        SnakeLadderGame game = new SnakeLadderGame();
+        game.initializePlayers();
+        assertEquals(2, game.getPlayers().size());
     }
 
-    @Test
-    public void testPlayerWinning() {
-        Player player = snakeLadderGame.getPlayers().get(0);
-        player.setPosition(94);
-
-        snakeLadderGame.handleSnakeOrLadder(6);
-        Assert.assertEquals(100, player.getPosition());
-
-        Assert.assertTrue(snakeLadderGame.isGameOver());
-        Assert.assertEquals(player, snakeLadderGame.getWinner());
-    }
 }

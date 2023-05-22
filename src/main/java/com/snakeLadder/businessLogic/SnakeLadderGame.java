@@ -23,36 +23,34 @@ public class SnakeLadderGame {
     }
 
     public void initializeGame() {
-        // Initialize the snakes and ladders
+
         initializeSnakes();
         initializeLadders();
-
-        // Initialize the players
         initializePlayers();
     }
 
-    private void initializeSnakes() {
-        // Add snakes to the game
-        snakes.add(new Snake(16, 6));
-        snakes.add(new Snake(47, 26));
-        snakes.add(new Snake(49, 11));
-        snakes.add(new Snake(56, 53));
-        snakes.add(new Snake(62, 19));
-        snakes.add(new Snake(64, 60));
+    public void initializeSnakes() {
+
+        this.snakes.add(new Snake(16, 6));
+        this.snakes.add(new Snake(47, 26));
+        this.snakes.add(new Snake(49, 11));
+        this.snakes.add(new Snake(56, 53));
+        this.snakes.add(new Snake(62, 19));
+        this.snakes.add(new Snake(64, 60));
     }
 
-    private void initializeLadders() {
-        // Add ladders to the game
-        ladders.add(new Ladder(3, 22));
-        ladders.add(new Ladder(5, 8));
-        ladders.add(new Ladder(11, 26));
-        ladders.add(new Ladder(20, 29));
-        ladders.add(new Ladder(27, 39));
-        ladders.add(new Ladder(38, 50));
+    public void initializeLadders() {
+
+        this.ladders.add(new Ladder(3, 22));
+        this.ladders.add(new Ladder(5, 8));
+        this.ladders.add(new Ladder(11, 26));
+        this.ladders.add(new Ladder(20, 29));
+        this.ladders.add(new Ladder(27, 39));
+        this.ladders.add(new Ladder(38, 50));
     }
 
-    private void initializePlayers() {
-        // Add players to the game
+    public void initializePlayers() {
+
         players.add(new Player("Player 1"));
         players.add(new Player("Player 2"));
     }
@@ -102,29 +100,10 @@ public class SnakeLadderGame {
         for (Ladder ladder : ladders) {
             if (ladder.getStart() == position)
                 return ladder.getEnd();
-            }
+        }
 
 
         return position;
     }
 
-    public boolean isGameOver() {
-        for (Player player : players) {
-
-            if (player.getPosition() == BOARD_SIZE)
-                return true;
-
-        }
-        return false;
-    }
-
-    public Player getWinner() {
-        for (Player player : players) {
-
-            if (player.getPosition() == BOARD_SIZE)
-                return player;
-
-        }
-        return null;
-    }
 }
