@@ -13,21 +13,20 @@ public class SnakeLadderGameTest {
 
     @Test
     public void testHandleSnakeOrLadder_Snake() {
-        List<Snake> snakes = List.of(new Snake(16, 6), new Snake(47, 26));
         SnakeLadderGame game = new SnakeLadderGame();
-        game.initializeSnakes(snakes);
+        game.initializeSnakes();
         int newPosition = game.handleSnakeOrLadder(16);
         assertEquals(6, newPosition);
     }
 
     @Test
     public void testHandleSnakeOrLadder_Ladder() {
-        List<Ladder> ladders = List.of(new Ladder(3, 22), new Ladder(5, 8));
         SnakeLadderGame game = new SnakeLadderGame();
-        game.initializeLadders(ladders);
-        int newPosition = game.handleSnakeOrLadder(3);
-        assertEquals(22, newPosition);
+        game.initializeLadders();
+        int newPosition = game.handleSnakeOrLadder(5);
+        assertEquals(8, newPosition);
     }
+
 
     @Test
     public void testHandleSnakeOrLadder_NoSnakeOrLadder() {
